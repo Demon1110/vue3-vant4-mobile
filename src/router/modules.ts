@@ -29,7 +29,7 @@ const routeModuleList: Array<RouteRecordRaw> = [
     redirect: '/message/index',
     component: Layout,
     meta: {
-      title: '图表',
+      title: '统计',
       icon: 'i-simple-icons:soundcharts',
     },
     children: [
