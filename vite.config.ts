@@ -37,6 +37,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const { VITE_PUBLIC_PATH, VITE_DROP_CONSOLE, VITE_PORT, VITE_PROXY, VITE_GLOB_PROD_MOCK }
     = viteEnv
 
+  // console.log("wwwwclog",viteEnv)
   const prodMock = VITE_GLOB_PROD_MOCK
 
   const isBuild = command === 'build'

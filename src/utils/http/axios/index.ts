@@ -52,34 +52,34 @@ const transform: AxiosTransform = {
       return res.data
     }
 
-    const { data } = res
+    const result = res.data
 
-    if (!data) {
+    if (!result) {
       // return '[HTTP] Request has no return value';
       throw new Error('请求出错，请稍候重试')
     }
     //  这里 code，result，message为 后台统一的字段，需要修改为项目自己的接口返回格式
-    const { code, result, message } = data
+    const { code, data, description } = result
     // 请求成功
     const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS
     // 是否显示提示信息
     if (isShowMessage) {
       if (hasSuccess && (successMessageText || isShowSuccessMessage)) {
         showDialog({
-          message: successMessageText || message || '操作成功！',
+          message: successMessageText || description || '操作成功！',
         }).then(() => {
           // on close
         })
       }
       else if (!hasSuccess && (errorMessageText || isShowErrorMessage)) {
         // 是否显示自定义信息提示
-        showFailToast(message || errorMessageText || '操作失败！')
+        showFailToast(description || errorMessageText || '操作失败！')
       }
       else if (!hasSuccess && options.errorMessageMode === 'modal') {
         // errorMessageMode=‘custom-modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
         showDialog({
           title: '提示',
-          message,
+          message: description,
         }).then(() => {
           // on close
         })
@@ -91,7 +91,7 @@ const transform: AxiosTransform = {
       return result
     }
     // 接口请求错误，统一提示错误信息 这里逻辑可以根据项目进行修改
-    let errorMsg = message
+    let errorMsg = description
     const LoginName = PageEnum.BASE_LOGIN_NAME
     const LoginPath = PageEnum.BASE_LOGIN
     switch (code) {
@@ -166,10 +166,10 @@ const transform: AxiosTransform = {
           config.params = undefined
         }
         if (joinParamsToUrl) {
-          config.url = setObjToUrlParams(
-            config.url as string,
-            { ...config.params, ...config.data },
-          )
+          config.url = setObjToUrlParams(config.url as string, {
+            ...config.params,
+            ...config.data,
+          })
         }
       }
       else {
@@ -247,7 +247,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         prefixUrl: urlPrefix,
 
         // 如果是json格式
-        headers: { 'Content-Type': ContentTypeEnum.JSON },
+        headers: { 'Content-Type': ContentTypeEnum.JSON, 'X-Requested-With': 'XMLHttpRequest' },
         // headers: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
 
         // 数据处理方式

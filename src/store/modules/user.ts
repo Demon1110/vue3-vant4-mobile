@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { createStorage } from '@/utils/Storage'
 import { store } from '@/store'
-import { ACCESS_TOKEN, CURRENT_USER } from '@/store/mutation-types'
+import { ACCESS_TOKEN, CURRENT_DEPT, CURRENT_USER } from '@/store/mutation-types'
 import { ResultEnum } from '@/enums/httpEnum'
 import { doLogout, getUserInfo, login } from '@/api/system/user'
 import { PageEnum } from '@/enums/pageEnum'
@@ -22,27 +22,49 @@ interface UserInfo {
   industry?: number
 }
 
+interface DeptInfo {
+  id: string | number
+  parentId: string | number
+  ancestors: string | number
+  name: string
+  sort: number
+  leader: string
+  phone: string
+  email: string
+  status: string
+  del: string
+  creator: string | number
+  createdDatetime: string
+}
+
 interface IUserState {
   token?: string
   userInfo: Nullable<UserInfo>
+  deptInfo: Nullable<DeptInfo>
   lastUpdateTime: number
 }
 
 interface LoginParams {
-  username: string
+  account: string
   password: string
+  grantType?: string
+  remember?: string
 }
 
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): IUserState => ({
     userInfo: null,
+    deptInfo: null,
     token: undefined,
     lastUpdateTime: 0,
   }),
   getters: {
     getUserInfo(): UserInfo {
       return this.userInfo || Storage.get(CURRENT_USER, '') || {}
+    },
+    getDeptInfo(): DeptInfo {
+      return this.deptInfo || Storage.get(CURRENT_DEPT, '') || {}
     },
     getToken(): string {
       return this.token || Storage.get(ACCESS_TOKEN, '')
@@ -61,14 +83,18 @@ export const useUserStore = defineStore({
       this.lastUpdateTime = new Date().getTime()
       Storage.set(CURRENT_USER, info)
     },
+    setDeptInfo(info: DeptInfo | null) {
+      this.deptInfo = info
+      Storage.set(CURRENT_DEPT, info)
+    },
 
     async Login(params: LoginParams) {
       try {
         const response = await login(params)
-        const { result, code } = response
+        const { data, code } = response
         if (code === ResultEnum.SUCCESS) {
           // save token
-          this.setToken(result.token)
+          this.setToken(data.token)
         }
         return Promise.resolve(response)
       }
@@ -81,7 +107,21 @@ export const useUserStore = defineStore({
       return new Promise((resolve, reject) => {
         getUserInfo()
           .then((res) => {
-            this.setUserInfo(res)
+            const tempUser = res.data.user
+            const userInfo: UserInfo = {
+              userId: tempUser.id,
+              username: tempUser.account,
+              realname: tempUser.nickname,
+              nickname: tempUser.nickname,
+              avatar: tempUser.avatar || 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+              cover: tempUser.cover || 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+              gender: tempUser.gender || 0,
+              phone: tempUser.phone,
+              sign: tempUser.sign || '一年精通三年熟练五年入门',
+              industry: tempUser.industry || 4,
+            }
+            this.setUserInfo(userInfo)
+            this.setDeptInfo(res.data.dept)
             resolve(res)
           })
           .catch((error) => {

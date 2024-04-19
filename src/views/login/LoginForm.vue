@@ -1,23 +1,16 @@
 <template>
   <van-form v-if="getShow" ref="formRef" class="flex flex-col items-center" @submit="handleSubmit">
     <van-field
-      v-model="formData.username"
-      class="enter-y mb-4 items-center !rounded-md"
-      name="username"
-      placeholder="用户名"
-      :rules="getFormRules.username"
+      v-model="formData.username" class="enter-y mb-4 items-center !rounded-md" name="username"
+      placeholder="用户名" :rules="getFormRules.username"
     >
       <template #left-icon>
         <i class="i-ph:user-bold mr-2 text-lg" />
       </template>
     </van-field>
     <van-field
-      v-model="formData.password"
-      class="enter-y mb-4 items-center !rounded-md"
-      :type="switchPassType ? 'password' : 'text'"
-      name="password"
-      placeholder="密码"
-      :rules="getFormRules.password"
+      v-model="formData.password" class="enter-y mb-4 items-center !rounded-md"
+      :type="switchPassType ? 'password' : 'text'" name="password" placeholder="密码" :rules="getFormRules.password"
       @click-right-icon="switchPassType = !switchPassType"
     >
       <template #left-icon>
@@ -37,22 +30,10 @@
       <a @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</a>
     </div>
 
-    <van-button
-      class="enter-y !mb-4 !rounded-md"
-      type="primary"
-      block
-      native-type="submit"
-      :loading="loading"
-    >
+    <van-button class="enter-y !mb-4 !rounded-md" type="primary" block native-type="submit" :loading="loading">
       登 录
     </van-button>
-    <van-button
-      class="enter-y !rounded-md"
-      plain
-      type="primary"
-      block
-      @click="setLoginState(LoginStateEnum.REGISTER)"
-    >
+    <van-button class="enter-y !rounded-md" plain type="primary" block @click="setLoginState(LoginStateEnum.REGISTER)">
       注 册
     </van-button>
   </van-form>
@@ -90,13 +71,16 @@ function handleSubmit() {
       try {
         loading.value = true
         showLoadingToast('登录中...')
-        const { code, message: msg } = await userStore.Login({
-          username: formData.username,
+        const { code, description: msg } = await userStore.Login({
+          account: formData.username,
           password: formData.password,
+          grantType: 'password',
+          remember: unref(rememberMe) ? 'on' : 'off',
         })
-        if (code === ResultEnum.SUCCESS) {
+        if (code === ResultEnum.SUCCESS || code === 200) {
           const toPath = decodeURIComponent((route.query?.redirect || '/') as string)
           showSuccessToast('登录成功，即将进入系统')
+          console.log('wwwwclog', route)
           if (route.name === PageEnum.BASE_LOGIN_NAME) {
             router.replace('/')
           }

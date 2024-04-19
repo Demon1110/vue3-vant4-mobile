@@ -1,9 +1,13 @@
 import { http } from '@/utils/http/axios'
 
+const modulePrefix = '/admin'
+
 export interface BasicResponseModel<T = any> {
+  ts: number
+  isSuccess: boolean
   code: number
-  message: string
-  result: T
+  description: string
+  data: T
 }
 
 /**
@@ -12,7 +16,7 @@ export interface BasicResponseModel<T = any> {
 export function login(params: any) {
   return http.request<BasicResponseModel>(
     {
-      url: '/login',
+      url: `${modulePrefix}/login`,
       method: 'POST',
       params,
     },
@@ -27,7 +31,7 @@ export function login(params: any) {
  */
 export function getUserInfo() {
   return http.request({
-    url: '/getUserInfo',
+    url: `${modulePrefix}/getUserInfo`,
     method: 'get',
   })
 }
@@ -37,18 +41,18 @@ export function getUserInfo() {
  */
 export function doLogout() {
   return http.request({
-    url: '/logout',
-    method: 'POST',
+    url: `${modulePrefix}/logout`,
+    method: 'get',
   })
 }
 
 /**
  * @description: 用户修改密码
  */
-export function changePassword(params: any, uid: any) {
+export function changePassword(params: any) {
   return http.request(
     {
-      url: `/user/u${uid}/changepw`,
+      url: `${modulePrefix}/changePassword`,
       method: 'POST',
       params,
     },
