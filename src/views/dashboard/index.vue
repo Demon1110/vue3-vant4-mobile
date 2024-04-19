@@ -8,8 +8,7 @@
       <div class="mb-6 mt-4 w-full">
         <van-swipe class="h-30" :autoplay="3000" :indicator-color="designStore.appTheme">
           <van-swipe-item
-            v-for="(text, index) in getSwipeText"
-            :key="index"
+            v-for="(text, index) in getSwipeText" :key="index"
             class="text-center text-gray-700 leading-relaxed dark:text-gray-400"
           >
             <p class="text-lg">

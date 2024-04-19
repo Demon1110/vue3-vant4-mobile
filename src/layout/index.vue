@@ -18,13 +18,8 @@
       </template>
     </routerView>
     <!-- <van-icon style="position: fixed;" class="justify-self-center bottom-6 inset-x-0 z-50 text-blue-600" size="40px" name="https://fastly.jsdelivr.net/npm/@vant/assets/icon-demo.png" /> -->
-    <van-tabbar route class="tabbar">
-      <van-tabbar-item
-        v-for="menu in getMenus"
-        :key="menu.name"
-        replace
-        :to="menu.path"
-      >
+    <van-tabbar route class="tabbar mb-4">
+      <van-tabbar-item v-for="menu in getMenus" :key="menu.name" replace :to="menu.path">
         <template #icon>
           <i :class="menu.meta?.icon" />
         </template>
