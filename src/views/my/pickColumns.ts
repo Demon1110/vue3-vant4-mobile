@@ -1,11 +1,14 @@
+import { number } from 'echarts'
+
 export interface FormColumns {
   text: string
-  value: number
+  value: string | number
 }
 
 export const genderColumns: FormColumns[] = [
-  { text: '男', value: 0 },
-  { text: '女', value: 1 },
+  { text: '男♂', value: 'M' },
+  { text: '女♀', value: 'F' },
+  { text: '未知', value: 'U' },
 ]
 
 export const industryColumns: FormColumns[] = [

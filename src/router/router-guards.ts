@@ -57,7 +57,9 @@ export function createRouterGuards(router: Router) {
   // 进入某个路由之后触发的钩子
   router.afterEach((to, _, failure) => {
     // 设置每个页面的 title
-    document.title = (to?.meta?.title as string) || document.title
+    if (to.meta?.innerPage) {
+      document.title = (to?.meta?.title as string) || document.title
+    }
 
     if (isNavigationFailure(failure)) {
       console.warn('failed navigation', failure)

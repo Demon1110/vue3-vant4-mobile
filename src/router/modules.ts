@@ -49,7 +49,7 @@ const routeModuleList: Array<RouteRecordRaw> = [
     redirect: '/example/index',
     component: Layout,
     meta: {
-      title: '示例',
+      title: '会员',
       icon: 'i-material-symbols:award-star',
     },
     children: [

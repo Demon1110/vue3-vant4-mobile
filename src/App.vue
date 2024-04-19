@@ -20,6 +20,7 @@ import { useDesignSetting } from '@/hooks/setting/useDesignSetting'
 const routeStore = useRouteStore()
 const { getDarkMode, getAppTheme, getIsPageAnimate, getPageAnimateType } = useDesignSetting()
 
+console.log('wwwwclog', getDarkMode)
 // 需要缓存的路由组件
 const keepAliveComponents = computed(() => routeStore.keepAliveComponents)
 
