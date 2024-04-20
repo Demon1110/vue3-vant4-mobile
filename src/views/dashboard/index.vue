@@ -7,14 +7,6 @@
       </div>
     </div>
 
-    <!-- <div class="mb-4 mt-4 w-full">
-      <van-swipe class="my-swipe h-50" :autoplay="3000" :indicator-color="designStore.appTheme">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
-    </div> -->
     <div class="mt-4 w-full">
       <h2 class="pl-3 text-left text-4 font-black">
         常用功能
@@ -53,7 +45,6 @@
 </template>
 
 <script setup lang="ts">
-// import { useDesignSettingStore } from '@/store/modules/designSetting'
 import { useGlobSetting } from '@/hooks/setting'
 import Logo from '@/components/Logo.vue'
 
@@ -61,7 +52,6 @@ defineOptions({
   name: 'DashboardPage',
 })
 
-// const designStore = useDesignSettingStore()
 const globSetting = useGlobSetting()
 
 const { title } = globSetting
