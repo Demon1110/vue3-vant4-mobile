@@ -5,13 +5,15 @@
       <div v-for="(item, index) in items" :key="index" class="item">
         <van-cell-group inset>
           <van-swipe-cell>
-            <van-cell :border="true" is-link :value="item.phone">
+            <van-cell center :border="true" is-link :value="item.phone">
               <!-- 使用 title 插槽来自定义标题 -->
               <template #title>
-                <span class="custom-title pr-1 font-size-4 font-600">{{ item.name }}</span>
-                <van-tag v-if="item.cardNo" plain type="primary" class="!font-size-2">
-                  {{ item.cardNo }}
-                </van-tag>
+                <div>
+                  <span class="custom-title pr-1 font-size-4 font-600">{{ item.name }}</span>
+                  <van-tag v-if="item.cardNo" plain type="primary" class="!font-size-2">
+                    {{ item.cardNo }}
+                  </van-tag>
+                </div>
               </template>
               <template #label>
                 <van-row>
@@ -25,8 +27,8 @@
               </template>
             </van-cell>
             <template #right>
-              <van-button class="h-100%" square type="primary" text="收藏" />
-              <van-button class="h-100%" square type="danger" text="删除" />
+              <van-button class="!h-full" square type="primary" text="收藏" />
+              <van-button class="!h-full" square type="danger" text="删除" />
             </template>
           </van-swipe-cell>
         </van-cell-group>
