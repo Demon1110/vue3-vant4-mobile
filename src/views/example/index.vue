@@ -24,7 +24,7 @@
                   <!-- 使用 title 插槽来自定义标题 -->
                   <template #title>
                     <div>
-                      <span class="custom-title pr-1 font-size-4 font-600">{{
+                      <span class="custom-title inline-block w-15 pr-1 font-size-4 font-600">{{
                         item.userName
                       }}</span>
                       <van-tag v-if="item.cardNo" plain type="primary" class="!font-size-2">
@@ -46,10 +46,10 @@
                     <span class="custom-title pr-1 font-size-4 font-600">{{ item.mobile }}</span>
                     <van-row class="van-cell__label !font-size-3">
                       <van-col span="24">
-                        <span>累计充值：{{ item.rechargeTotal || 0 }}</span>
+                        <span class="inline-block min-w-25 text-left">累计充值：{{ item.rechargeTotal || 0 }}</span>
                       </van-col>
                       <van-col span="24">
-                        <span class="van-ellipsis">累计消费：{{ item.consumeTotal || "0" }}</span>
+                        <span class="van-ellipsis inline-block min-w-25 text-left">累计消费：{{ item.consumeTotal || "0" }}</span>
                       </van-col>
                     </van-row>
                   </template>

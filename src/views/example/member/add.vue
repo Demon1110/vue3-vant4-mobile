@@ -1,73 +1,74 @@
 <template>
   <div>
     <NavBar />
-
-    <!-- 添加或修改会员，表单内容 -->
-    <van-form ref="formRef" class="flex flex-col" @submit="submit">
-      <van-cell-group inset class="enter-y !mx-0 !mb-10">
-        <van-field
-          v-model="formData.userName"
-          label="姓名"
-          label-align="center"
-          name="username"
-          placeholder="请输入姓名"
-          required
-          :rules="formRules.userName"
-        />
-        <van-field
-          v-model="formData.mobile"
-          label="手机号"
-          label-align="center"
-          placeholder="请输入手机号"
-          type="tel"
-          required
-          :rules="formRules.mobile"
-        />
-        <!-- <van-field v-model="formData.vipType" label="会员类型" placeholder="请选择会员类型" /> -->
-        <van-field label="性别" placeholder="请选择性别" label-align="center" required>
-          <template #input>
-            <van-radio-group v-model="formData.sex" direction="horizontal">
-              <van-radio name="M">
-                男
-              </van-radio>
-              <van-radio name="F">
-                女
-              </van-radio>
-            </van-radio-group>
-          </template>
-        </van-field>
-        <van-field
-          v-model="formData.birthDay"
-          label-align="center"
-          label="出生日期"
-          placeholder="请选择出生日期"
-          required
-          :rules="formRules.birthDay"
-          @click="showBirthdayPicker = true"
-        />
-        <van-field
-          v-if="!formData.id"
-          v-model="formData.rechargeTotal"
-          label-align="center"
-          label="充值金额"
-          placeholder="请输入充值金额，单位：元"
-        />
-        <van-field
-          v-model="formData.remark"
-          label-align="center"
-          label="备注"
-          placeholder="请输入备注"
-          rows="2"
-          autosize
-          type="textarea"
-          maxlength="50"
-          show-word-limit
-        />
-      </van-cell-group>
-      <van-button block type="primary" native-type="submit" :loading="loading">
-        提交
-      </van-button>
-    </van-form>
+    <div class="px-6">
+      <!-- 添加或修改会员，表单内容 -->
+      <van-form ref="formRef" class="flex flex-col" @submit="submit">
+        <van-cell-group inset class="enter-y !mx-0 !mb-10">
+          <van-field
+            v-model="formData.userName"
+            label="姓名"
+            label-align="center"
+            name="username"
+            placeholder="请输入姓名"
+            required
+            :rules="formRules.userName"
+          />
+          <van-field
+            v-model="formData.mobile"
+            label="手机号"
+            label-align="center"
+            placeholder="请输入手机号"
+            type="tel"
+            required
+            :rules="formRules.mobile"
+          />
+          <!-- <van-field v-model="formData.vipType" label="会员类型" placeholder="请选择会员类型" /> -->
+          <van-field label="性别" placeholder="请选择性别" label-align="center" required>
+            <template #input>
+              <van-radio-group v-model="formData.sex" direction="horizontal">
+                <van-radio name="M">
+                  男
+                </van-radio>
+                <van-radio name="F">
+                  女
+                </van-radio>
+              </van-radio-group>
+            </template>
+          </van-field>
+          <van-field
+            v-model="formData.birthDay"
+            label-align="center"
+            label="出生日期"
+            placeholder="请选择出生日期"
+            required
+            :rules="formRules.birthDay"
+            @click="showBirthdayPicker = true"
+          />
+          <van-field
+            v-if="!formData.id"
+            v-model="formData.rechargeTotal"
+            label-align="center"
+            label="充值金额"
+            placeholder="请输入充值金额，单位：元"
+          />
+          <van-field
+            v-model="formData.remark"
+            label-align="center"
+            label="备注"
+            placeholder="请输入备注"
+            rows="2"
+            autosize
+            type="textarea"
+            maxlength="50"
+            show-word-limit
+          />
+        </van-cell-group>
+        <van-button block type="primary" native-type="submit" :loading="loading">
+          提交
+        </van-button>
+      </van-form>
+    </div>
 
     <van-popup v-model:show="showBirthdayPicker" position="bottom">
       <van-date-picker

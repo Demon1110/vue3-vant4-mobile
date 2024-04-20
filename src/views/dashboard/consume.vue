@@ -37,7 +37,7 @@
                           <span class="">消费类型：{{ item.comsumeType }}</span>
                         </van-col>
                         <van-col span="24">
-                          <span class="">创建时间：{{ handlerDate(item.createdDatetime) }}</span>
+                          <span class="">消费时间：{{ handlerDate(item.createdDatetime) }}</span>
                         </van-col>
                       </van-row>
                     </template>

@@ -37,7 +37,7 @@
                           <span class="">充值类型：{{ item.chargeType }}</span>
                         </van-col>
                         <van-col span="24">
-                          <span class="">创建时间：{{ handlerDate(item.createdDatetime) }}</span>
+                          <span class="">充值时间：{{ handlerDate(item.createdDatetime) }}</span>
                         </van-col>
                       </van-row>
                     </template>
