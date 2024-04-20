@@ -1,7 +1,9 @@
 <template>
   <div>
     <NavBar />
-    <p>修改登录密码页面</p>
+    <div>
+      <p>修改登录密码页面</p>
+    </div>
   </div>
 </template>
 

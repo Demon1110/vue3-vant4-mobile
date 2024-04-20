@@ -2,45 +2,25 @@ import { http } from '@/utils/http/axios'
 
 const modulePrefix = '/memberRecharge'
 
+export interface MemberRechargeModel {
+  id?: string | number
+  memberId?: number
+  userName?: string
+  mobile?: string
+  chargeType: string
+  amount?: number
+  remark?: string
+  del?: string | boolean
+  creator?: number
+  createdDatetime?: string
+}
 /**
  * @description: 获取会员充值信息
  */
-export function queryMemberRechargeInfo() {
+export function queryMemberRechargeInfo(data: any) {
   return http.request({
-    url: `${modulePrefix}/query`,
-    method: 'post',
-  })
-}
-
-/**
- * @description: 修改会员充值信息
- */
-export function updateMemberRechargeInfo(data: any) {
-  return http.request({
-    url: `${modulePrefix}/edit`,
-    method: 'put',
-    data,
-  })
-}
-
-/**
- * @description: 新增会员充值信息
- */
-export function addMemberRechargeInfo(data: any) {
-  return http.request({
-    url: `${modulePrefix}/add`,
+    url: `${modulePrefix}/queryMobile`,
     method: 'post',
     data,
-  })
-}
-
-/**
- * @description: 删除会员充值信息
- */
-export function deleteMemberRechargeInfo(ids: any) {
-  return http.request({
-    url: `${modulePrefix}/delete`,
-    method: 'delete',
-    params: { ids },
   })
 }

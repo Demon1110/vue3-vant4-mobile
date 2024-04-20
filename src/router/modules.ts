@@ -21,6 +21,26 @@ const routeModuleList: Array<RouteRecordRaw> = [
         },
         component: () => import('@/views/dashboard/index.vue'),
       },
+      {
+        path: 'consume',
+        name: 'consumePage',
+        meta: {
+          keepAlive: false,
+          title: '消费记录',
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/dashboard/consume.vue'),
+      },
+      {
+        path: 'recharge',
+        name: 'rechargePage',
+        meta: {
+          keepAlive: false,
+          title: '充值记录',
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/dashboard/recharge.vue'),
+      },
     ],
   },
   {

@@ -99,6 +99,7 @@
 <script setup lang="ts">
 import { showConfirmDialog, showToast } from 'vant'
 import type { MemberModel } from '@/api/system/member'
+import { handlerDate } from '@/utils/dateUtil'
 import { deleteMemberInfo, queryMemberInfo } from '@/api/system/member'
 import router from '@/router'
 
@@ -174,18 +175,6 @@ function handleDelete(item: MemberModel) {
     .catch(() => {
       console.log('cancel')
     })
-}
-
-// 格式化日期, 如果包含00:00:00则去掉
-function handlerDate(date: string) {
-  if (!date) {
-    return '--'
-  }
-  if (date.includes('00:00:00')) {
-    date = date.substring(0, date.indexOf('00:00:00'))
-  }
-
-  return date.trim()
 }
 
 function onLoad() {

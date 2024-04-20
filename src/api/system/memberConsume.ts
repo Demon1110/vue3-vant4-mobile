@@ -2,45 +2,25 @@ import { http } from '@/utils/http/axios'
 
 const modulePrefix = '/memberConsume'
 
+export interface MemberConsumeModel {
+  id?: string | number
+  memberId?: number
+  userName?: string
+  mobile?: string
+  comsumeType: string
+  amount?: number
+  remark?: string
+  del?: string | boolean
+  creator?: number
+  createdDatetime?: string
+}
 /**
  * @description: 获取会员消费信息
  */
-export function queryMemberConsumeInfo() {
+export function queryMemberConsumeInfo(data: any) {
   return http.request({
-    url: `${modulePrefix}/query`,
-    method: 'post',
-  })
-}
-
-/**
- * @description: 修改会员消费信息
- */
-export function updateMemberConsumeInfo(data: any) {
-  return http.request({
-    url: `${modulePrefix}/edit`,
-    method: 'put',
-    data,
-  })
-}
-
-/**
- * @description: 新增会员消费信息
- */
-export function addMemberConsumeInfo(data: any) {
-  return http.request({
-    url: `${modulePrefix}/add`,
+    url: `${modulePrefix}/queryMobile`,
     method: 'post',
     data,
-  })
-}
-
-/**
- * @description: 删除会员消费信息
- */
-export function deleteMemberConsumeInfo(ids: any) {
-  return http.request({
-    url: `${modulePrefix}/delete`,
-    method: 'delete',
-    params: { ids },
   })
 }
