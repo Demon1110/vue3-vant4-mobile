@@ -26,6 +26,8 @@
         {{ menu.meta?.title }}
       </van-tabbar-item>
     </van-tabbar>
+    <!-- 底部安全区 -->
+    <div class="van-safe-area-bottom" />
   </div>
 </template>
 

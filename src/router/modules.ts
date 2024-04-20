@@ -55,11 +55,31 @@ const routeModuleList: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'index',
-        name: 'ExamplePage',
+        name: 'memberList',
         meta: {
           keepAlive: false,
         },
         component: () => import('@/views/example/index.vue'),
+      },
+      {
+        path: '/member/add',
+        name: 'addMember',
+        meta: {
+          title: '添加会员',
+          keepAlive: false,
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/example/member/add.vue'),
+      },
+      {
+        path: '/member/edit',
+        name: 'editMember',
+        meta: {
+          title: '编辑会员信息',
+          keepAlive: false,
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/example/member/add.vue'),
       },
     ],
   },

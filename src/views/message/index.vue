@@ -3,7 +3,7 @@
     <lineChart />
     <barChart />
     <pieChart />
-    <van-back-top right="15vw" bottom="10vh" />
+    <van-back-top right="10vw" bottom="10vh" />
   </div>
 </template>
 
