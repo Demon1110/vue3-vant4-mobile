@@ -41,6 +41,26 @@ const routeModuleList: Array<RouteRecordRaw> = [
         },
         component: () => import('@/views/dashboard/recharge.vue'),
       },
+      {
+        path: 'dictConf',
+        name: 'dictConfPage',
+        meta: {
+          keepAlive: false,
+          title: '系统配置',
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/dictConf/index.vue'),
+      },
+      {
+        path: 'dictItem',
+        name: 'dictItemPage',
+        meta: {
+          keepAlive: false,
+          title: '详情配置',
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/dictConf/dictItem.vue'),
+      },
     ],
   },
   // {
@@ -187,7 +207,6 @@ const routeModuleList: Array<RouteRecordRaw> = [
       },
     ],
   },
-
 ]
 
 export default routeModuleList

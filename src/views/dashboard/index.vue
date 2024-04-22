@@ -38,7 +38,7 @@
           text="消费记录"
           to="/dashboard/consume"
         />
-        <van-grid-item icon="setting-o" icon-color="#3F4444" text="系统配置" to="/member/add" />
+        <van-grid-item icon="setting-o" icon-color="#3F4444" text="系统配置" to="/dashboard/dictConf" />
       </van-grid>
     </div>
   </div>
