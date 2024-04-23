@@ -2,7 +2,7 @@ import { http } from '@/utils/http/axios'
 
 const modulePrefix = '/admin/system/dictItem'
 
-export interface DictModel {
+export interface DictItemModel {
   id?: string | number
   label?: string
   value?: string
@@ -14,7 +14,7 @@ export interface DictModel {
  */
 export function queryDictItem(data: any) {
   return http.request({
-    url: `${modulePrefix}/queryMobile`,
+    url: `${modulePrefix}/query`,
     method: 'post',
     data,
   })

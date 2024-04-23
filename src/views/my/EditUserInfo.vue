@@ -2,109 +2,52 @@
   <div>
     <NavBar />
     <van-divider>基本信息</van-divider>
-    <van-field
-      label="头像"
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      readonly
-    >
+    <van-field label="头像" label-class="font-bold" input-align="right" :center="true" :border="false" is-link readonly>
       <template #input>
         <UploaderImage>
-          <van-image
-            class="h-16 w-16"
-            round fit="cover"
-            :src="avatar"
-          />
+          <van-image class="h-16 w-16" round fit="cover" :src="avatar" />
         </UploaderImage>
       </template>
     </van-field>
 
     <van-field
-      v-model="state.nickname"
-      label="昵称"
-      readonly
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      to="/editNickname"
+      v-model="state.nickname" label="昵称" readonly label-class="font-bold" input-align="right" :center="true"
+      :border="false" is-link to="/editNickname"
     />
 
     <van-field
-      v-model="state.genderText"
-      label="性别"
-      readonly
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      @click="showGenderPicker = true"
+      v-model="state.genderText" label="性别" readonly label-class="font-bold" input-align="right" :center="true"
+      :border="false" is-link @click="showGenderPicker = true"
     />
 
     <van-field
-      v-model="state.sign"
-      label="签名"
-      readonly
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      to="/editSign"
+      v-model="state.sign" label="签名" readonly label-class="font-bold" input-align="right" :center="true"
+      :border="false" is-link to="/editSign"
     />
 
-    <van-field
-      label="主页封面"
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      readonly
-    >
+    <van-field label="主页封面" label-class="font-bold" input-align="right" :center="true" :border="false" is-link readonly>
       <template #input>
         <UploaderImage>
-          <van-image
-            class="cover h-15 w-25"
-            fit="cover"
-            :src="cover ? cover : avatar"
-          />
+          <van-image class="cover h-15 w-25" fit="cover" :src="cover ? cover : avatar" />
         </UploaderImage>
       </template>
     </van-field>
 
     <van-field
-      v-model="state.industryText"
-      label="行业"
-      readonly
-      label-class="font-bold"
-      input-align="right"
-      :center="true"
-      :border="false"
-      is-link
-      @click="showIndustryPicker = true"
+      v-model="state.industryText" label="行业" readonly label-class="font-bold" input-align="right"
+      :center="true" :border="false" is-link @click="showIndustryPicker = true"
     />
 
     <van-popup v-model:show="showGenderPicker" position="bottom" round>
       <van-picker
-        v-model="state.genderValues"
-        visible-option-num="3"
-        :columns="genderColumns"
-        @confirm="handleGender"
+        v-model="state.genderValues" visible-option-num="3" :columns="genderColumns" @confirm="handleGender"
         @cancel="showGenderPicker = false"
       />
     </van-popup>
 
     <van-popup v-model:show="showIndustryPicker" position="bottom" round>
       <van-picker
-        v-model="state.industryValues"
-        :columns="industryColumns"
-        @confirm="handleIndustry"
+        v-model="state.industryValues" :columns="industryColumns" @confirm="handleIndustry"
         @cancel="showIndustryPicker = false"
       />
     </van-popup>
@@ -131,7 +74,7 @@ const state = reactive({
   genderText: '',
   industryText: '',
   industryValues: [0],
-  genderValues: [0],
+  genderValues: ['U'],
 })
 
 function handleGender({ selectedOptions }) {
@@ -148,7 +91,7 @@ function handleIndustry({ selectedOptions }) {
   showIndustryPicker.value = false
 }
 
-function getFromText(columns: FormColumns[], value = 0) {
+function getFromText(columns: FormColumns[], value: string | number = 0) {
   return columns.find(item => item.value === value)?.text
 }
 

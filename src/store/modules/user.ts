@@ -16,7 +16,7 @@ interface UserInfo {
   nickname: string
   avatar: string
   cover: string
-  gender: number
+  gender: string
   phone: string
   sign?: string
   industry?: number
@@ -115,7 +115,7 @@ export const useUserStore = defineStore({
               nickname: tempUser.nickname,
               avatar: tempUser.avatar || 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
               cover: tempUser.cover || 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
-              gender: tempUser.gender || 0,
+              gender: tempUser.gender || 'U',
               phone: tempUser.phone,
               sign: tempUser.sign || '一年精通三年熟练五年入门',
               industry: tempUser.industry || 4,

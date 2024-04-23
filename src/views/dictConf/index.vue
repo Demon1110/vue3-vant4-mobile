@@ -14,8 +14,12 @@
       </van-cell>
     </van-cell-group>
 
-    <van-popup v-if="dictCode && dictName" v-model:show="showPopup" position="bottom" :style="{ height: '60%' }">
-      <dict-item :dict-code="dictCode" :dict-name="dictName" />
+    <van-popup
+      v-if="dictCode && dictName" v-model:show="showPopup" position="bottom" round closeable
+      close-icon-position="top-right"
+      :style="{ height: '60%' }" @closed="closePopup"
+    >
+      <dict-item v-if="dictCode && dictName" :dict-code="dictCode" :dict-name="dictName" />
     </van-popup>
   </div>
 </template>
@@ -36,6 +40,12 @@ function toDictItem(dictCodeVal: string, dictNameVal: string) {
   dictName.value = dictNameVal
   // router.push({ name: 'dictItemPage', query: { dictCode, dictName } })
   showPopup.value = true
+}
+
+function closePopup() {
+  showPopup.value = false
+  dictCode.value = ''
+  dictName.value = ''
 }
 </script>
 
