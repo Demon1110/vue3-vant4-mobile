@@ -6,6 +6,8 @@ export interface DictItemModel {
   id?: string | number
   label?: string
   value?: string
+  sort?: number
+  type: string
   remark?: string
 }
 
@@ -23,7 +25,7 @@ export function queryDictItem(data: any) {
 /**
  * @description: 修改配置信息
  */
-export function updateDictItem(data: any) {
+export function updateDictItem(data: DictItemModel) {
   return http.request(
     {
       url: `${modulePrefix}/edit`,
@@ -39,7 +41,7 @@ export function updateDictItem(data: any) {
 /**
  * @description: 新增配置信息
  */
-export function addDictItem(data: any) {
+export function addDictItem(data: DictItemModel) {
   return http.request(
     {
       url: `${modulePrefix}/add`,
