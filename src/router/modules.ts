@@ -9,7 +9,7 @@ const routeModuleList: Array<RouteRecordRaw> = [
     redirect: '/dashboard/index',
     component: Layout,
     meta: {
-      title: '主控台',
+      title: '首页',
       icon: 'i-simple-icons:atlassian',
     },
     children: [
