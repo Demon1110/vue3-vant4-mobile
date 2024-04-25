@@ -22,6 +22,26 @@ const routeModuleList: Array<RouteRecordRaw> = [
         component: () => import('@/views/dashboard/index.vue'),
       },
       {
+        path: 'chongzhi',
+        name: 'chongzhiPage',
+        meta: {
+          keepAlive: false,
+          title: '充值',
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/dashboard/chongzhi.vue'),
+      },
+      {
+        path: 'xiaofei',
+        name: 'xiaofeiPage',
+        meta: {
+          keepAlive: false,
+          title: '消费',
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/dashboard/xiaofei.vue'),
+      },
+      {
         path: 'consume',
         name: 'consumePage',
         meta: {

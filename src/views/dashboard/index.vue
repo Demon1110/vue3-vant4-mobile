@@ -12,12 +12,12 @@
         常用功能
       </h2>
       <van-grid :column-num="3" :gutter="10">
-        <van-grid-item icon="refund-o" icon-color="#39a9ed" text="充值" to="/dashboard/detail" />
+        <van-grid-item icon="refund-o" icon-color="#39a9ed" text="充值" to="/dashboard/chongzhi" />
         <van-grid-item
           icon="after-sale"
           icon-color="rgb(255, 102, 0)"
           text="消费"
-          to="/dashboard/detail"
+          to="/dashboard/xiaofei"
         />
         <van-grid-item
           icon="vip-card-o"

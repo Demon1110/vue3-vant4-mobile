@@ -4,10 +4,10 @@ const modulePrefix = '/memberRecharge'
 
 export interface MemberRechargeModel {
   id?: string | number
-  memberId?: number
+  memberId?: string | number
   userName?: string
   mobile?: string
-  chargeType: string
+  chargeType?: string
   amount?: number
   remark?: string
   del?: string | boolean
@@ -23,4 +23,20 @@ export function queryMemberRechargeInfo(data: any) {
     method: 'post',
     data,
   })
+}
+
+/**
+ * @description: 充值
+ */
+export function addMemberRechargeInfo(data: any) {
+  return http.request(
+    {
+      url: `${modulePrefix}/add`,
+      method: 'post',
+      data,
+    },
+    {
+      isTransformResponse: true,
+    },
+  )
 }
