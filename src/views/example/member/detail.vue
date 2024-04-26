@@ -3,7 +3,7 @@
     <NavBar />
     <div class="member-info">
       <div class="head">
-        <van-cell value="15330123456" center>
+        <van-cell :value="memberInfo.mobile" center>
           <!-- 使用 title 插槽来自定义头像 -->
           <template #icon>
             <div class="h-15 w-15 flex items-center justify-center rounded-full bg-fuchsia-300 text-4xl text-gray-500">
