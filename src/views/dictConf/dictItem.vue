@@ -13,7 +13,7 @@
           <van-icon name="close" class="search-icon ml-4" @click.stop="deleteDict('2')" />
         </template>
       </van-cell>
-      <van-button type="primary" block class="w-full" @click="showDialog({ type: '' })">
+      <van-button type="primary" round block class="w-full" @click="showDialog({ type: '' })">
         添加配置
       </van-button>
     </van-cell-group>
@@ -25,10 +25,10 @@
           <van-field v-model="form.value" label="值" placeholder="请输入值" />
           <van-field v-model="form.remark" type="textarea" label="备注" placeholder="请输入备注" />
         </van-form>
-        <van-button type="default" class="w-2/5 !mx-2" @click="showEdit = false">
+        <van-button type="default" round class="w-2/5 !mx-2" @click="showEdit = false">
           取消
         </van-button>
-        <van-button type="primary" class="w-2/5 !mx-2" @click="saveOrEditDictItem">
+        <van-button type="primary" round class="w-2/5 !mx-2" @click="saveOrEditDictItem">
           确定
         </van-button>
       </van-cell-group>

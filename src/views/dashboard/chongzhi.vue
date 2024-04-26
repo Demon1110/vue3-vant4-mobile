@@ -1,28 +1,30 @@
 <template>
   <div>
     <NavBar v-if="showNavBar" />
-    <van-form ref="formRef" @submit="submit">
-      <van-field
-        v-model="form.userName" label="姓名" input-align="right" is-link placeholder="请选择会员" required readonly
-        :center="true" :rules="formRules.userName" maxlength="10" @click="selectMember"
-      />
-      <van-field
-        v-model="form.mobile" label="手机号" input-align="right" placeholder="会员手机号" readonly type="tel"
-        :center="true" maxlength="11"
-      />
-      <van-field
-        v-model="form.amount" label="充值金额" input-align="right" placeholder="请输入充值金额" required readonly
-        :center="true" :rules="formRules.amount" min="1" max="1000000" @touchstart.stop="numberKeyboardShow = true"
-      />
-      <van-field
-        v-model="form.remark" label="备注" input-align="right" placeholder="请输入备注" maxlength="20"
-        :center="true"
-      />
-      <van-button class="!mt-4" round type="primary" block native-type="submit">
-        充值
-      </van-button>
-    </van-form>
 
+    <div class="!m-4">
+      <van-form ref="formRef" @submit="submit">
+        <van-field
+          v-model="form.userName" label="姓名" input-align="right" is-link placeholder="请选择会员" required readonly
+          :center="true" :rules="formRules.userName" maxlength="10" @click="selectMember"
+        />
+        <van-field
+          v-model="form.mobile" label="手机号" input-align="right" placeholder="会员手机号" readonly type="tel"
+          :center="true" maxlength="11"
+        />
+        <van-field
+          v-model="form.amount" label="充值金额" input-align="right" placeholder="请输入充值金额" required readonly
+          :center="true" :rules="formRules.amount" min="1" max="1000000" @touchstart.stop="numberKeyboardShow = true"
+        />
+        <van-field
+          v-model="form.remark" label="备注" input-align="right" placeholder="请输入备注" maxlength="20"
+          :center="true"
+        />
+        <van-button class="!mt-4" round type="primary" block native-type="submit">
+          充值
+        </van-button>
+      </van-form>
+    </div>
     <van-number-keyboard
       v-model="amountVal" :show="numberKeyboardShow" theme="custom" :extra-key="['00', '.']"
       close-button-text="完成" @blur="numberKeyboardShow = false"
@@ -35,12 +37,9 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  MemberRechargeModel,
-} from '@/api/system/memberRecharge'
-import {
-  addMemberRechargeInfo,
-} from '@/api/system/memberRecharge'
+import { showSuccessToast } from 'vant'
+import type { MemberRechargeModel } from '@/api/system/memberRecharge'
+import { addMemberRechargeInfo } from '@/api/system/memberRecharge'
 import NavBar from '@/views/my/components/NavBar.vue'
 import searchMember from '@/views/example/member/searchMember.vue'
 import type { MemberModel } from '@/api/system/member'
@@ -51,6 +50,8 @@ defineProps({
     default: true,
   },
 })
+
+const router = useRouter()
 
 const amountVal = ref('0')
 const formRef = ref<any>()
@@ -84,9 +85,12 @@ const actionSheetShow = ref(false)
 
 function submit() {
   console.log(amountVal)
-  // addMemberRechargeInfo(form).then(() => {
-  //       console.log('充值成功');
-  //     });
+  addMemberRechargeInfo(form).then(() => {
+    showSuccessToast('充值成功')
+    setTimeout(() => {
+      router.back()
+    }, 1000)
+  })
 }
 
 function selectMember() {

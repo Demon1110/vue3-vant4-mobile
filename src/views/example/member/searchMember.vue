@@ -7,9 +7,15 @@
       <div v-for="(item, index) in items" :key="index" class="item">
         <van-cell-group inset>
           <van-cell
-            :border="true" :title="item.userName" is-link center :value="item.mobile"
-            @click="onItemClick(item)"
-          />
+            :border="true" is-link
+            center :value="item.mobile" @click="onItemClick(item)"
+          >
+            <template #title>
+              <!-- :title="item.userName+ '  余额（' + ((item.rechargeTotal||0)-(item.consumeTotal||0))+'）'" -->
+              <span class="inline-block min-w-10">{{ item.userName }}</span>
+              <span class="text-sky-400">    余额({{ ((item.rechargeTotal || 0) - (item.consumeTotal || 0)) }})</span>
+            </template>
+          </van-cell>
         </van-cell-group>
       </div>
     </template>
@@ -51,7 +57,6 @@ function fetchData() {
 function onItemClick(item: MemberModel) {
   // 跳转到会员详情页面
   // router.push({ name: 'MemberDetail', params: { id: item.id } })
-  console.log(item)
   emit('onItemClick', item)
 }
 

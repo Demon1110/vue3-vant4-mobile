@@ -96,7 +96,7 @@ const transform: AxiosTransform = {
     const LoginPath = PageEnum.BASE_LOGIN
     switch (code) {
       // 请求失败
-      case ResultEnum.ERROR:
+      case (ResultEnum.ERROR, ResultEnum.SYS_ERROR):
         showFailToast(errorMsg)
         break
       // token 过期

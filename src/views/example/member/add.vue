@@ -64,7 +64,7 @@
             show-word-limit
           />
         </van-cell-group>
-        <van-button block type="primary" native-type="submit" :loading="loading">
+        <van-button type="primary" round block native-type="submit" :loading="loading">
           提交
         </van-button>
       </van-form>
