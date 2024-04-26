@@ -1,7 +1,7 @@
 <template>
   <div>
-    <NavBar />
-    <van-sticky :offset-top="48">
+    <NavBar v-if="showNavBar" />
+    <van-sticky v-if="showSearch" :offset-top="48">
       <van-search
         v-model="keyword"
         shape="round"
@@ -80,6 +80,21 @@ import type { MemberConsumeModel } from '@/api/system/memberConsume'
 import { queryMemberConsumeInfo } from '@/api/system/memberConsume'
 import NavBar from '@/views/my/components/NavBar.vue'
 
+const props = defineProps({
+  memberId: {
+    type: String,
+    required: false,
+  },
+  showNavBar: {
+    type: Boolean,
+    default: true,
+  },
+  showSearch: {
+    type: Boolean,
+    default: true,
+  },
+})
+
 const listLoading = ref(false)
 const loading = ref(false)
 const finished = ref(false)
@@ -91,7 +106,9 @@ function fetchData() {
   queryMemberConsumeInfo({
     current: currentPage.value,
     size: 10,
-    model: {},
+    model: {
+      memberId: props.memberId,
+    },
     extra: {
       keyword: keyword.value,
     },

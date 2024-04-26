@@ -20,7 +20,7 @@
           <div v-for="(item, index) in items" :key="index" class="item">
             <van-cell-group inset>
               <van-swipe-cell>
-                <van-cell center :border="true" is-link :value="item.mobile">
+                <van-cell center :border="true" is-link :value="item.mobile" :to="`/member/detail?id=${item.id}`">
                   <!-- 使用 title 插槽来自定义标题 -->
                   <template #title>
                     <div>

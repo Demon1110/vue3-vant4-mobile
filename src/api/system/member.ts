@@ -8,7 +8,7 @@ export interface MemberModel {
   vipType?: number
   userName: string
   mobile: string
-  sex: string
+  sex?: string
   birthDay?: string
   remark?: string
   status?: string
@@ -28,6 +28,22 @@ export function queryMemberInfo(data: any) {
     method: 'post',
     data,
   })
+}
+
+/**
+ * @description: 获取单个会员信息
+ */
+export function detailMemberInfo(data: any) {
+  return http.request(
+    {
+      url: `${modulePrefix}/detail`,
+      method: 'post',
+      data,
+    },
+    {
+      isTransformResponse: true,
+    },
+  )
 }
 
 /**

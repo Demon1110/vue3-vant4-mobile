@@ -8,7 +8,7 @@
     </div>
 
     <div class="mt-4 w-full">
-      <h2 class="pl-3 text-left text-4 font-black">
+      <h2 class="p-3 text-left text-4 font-black">
         常用功能
       </h2>
       <van-grid :column-num="3" :gutter="10">

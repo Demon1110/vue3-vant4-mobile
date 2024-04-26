@@ -141,6 +141,16 @@ const routeModuleList: Array<RouteRecordRaw> = [
         },
         component: () => import('@/views/example/member/add.vue'),
       },
+      {
+        path: '/member/detail',
+        name: 'detailMember',
+        meta: {
+          title: '会员详细信息',
+          keepAlive: false,
+          hiddenHeader: true,
+        },
+        component: () => import('@/views/example/member/detail.vue'),
+      },
     ],
   },
   {
